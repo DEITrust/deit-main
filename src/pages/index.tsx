@@ -941,7 +941,6 @@ const StacksSkills = () => {
         <li>&mdash; DAOs</li>
         <li>&mdash; ARGs</li>
         <li>&mdash; Memetics</li>
-        <li>&mdash; Lulz</li>
       </ul>
       <hr className="my-6" />
       <dt>Skills Available For Fractional CTO/Consulting</dt>
@@ -970,6 +969,59 @@ const Projects = () => {
       <div className="mb-6  mt-6 flex w-full flex-col sm:flex-row">
         <div className="mr-2 mb-8 basis-1/2">
           <div className="m-auto max-w-sm">
+            <dt>DEIT Games (Coming Soon)</dt>
+            <p className="mb-4">
+              With multiple MVP protofypes in the back catalog, and one Early Access game nearing launch, <strong>DEIT</strong> will be exploring more game dev as <strong>DEIT Games</strong>, delving more into bridging DLT and games with future releases.
+            </p>
+            <p>
+              In the meantime, if you like Super Smash Bros and/or Slime Volleyball, stay tuned ;)
+            </p>
+          </div>
+        </div>
+        <hr className="mb-6 sm:mb-0 sm:hidden" />
+        <div className="ml-2  mb-8 basis-1/2">
+          <div className="m-auto max-w-sm">
+            <dt>shinyblocks.js</dt>
+            <p className="mb-4">
+              Developed primarily for Diamond driven development, shinyblocks.js simplifies contract development in
+              Hardhat even when it's not an ERC2535 contract. I think it's... shiny :)
+            </p>
+            <p>
+              Repo available at{' '}
+              <a
+                className="font-bold underline"
+                href="https://github.com/DEITrust/shinyblocks"
+                target="_blank"
+                rel="noreferrer"
+              >
+                DEITrust/shinyblocks
+              </a>{' '}
+              and as part of{' '}
+              <a
+                className="font-bold underline"
+                href="https://github.com/DEITrust/deit-contracts"
+                target="_blank"
+                rel="noreferrer"
+              >
+                DEITrust/deit-contracts
+              </a>
+              .<br/>
+              Set to be integrated into a refactor of  <a
+                className="font-bold underline"
+                href="https://github.com/proggR/diamond-hardhat"
+                target="_blank"
+                rel="noreferrer"
+              >
+                proggR/diamond-hardhat
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div className="mb-6  mt-6 flex w-full flex-col sm:flex-row">
+        <div className="mr-2 mb-8 basis-1/2">
+          <div className="m-auto max-w-sm">
             <dt>updraft-astro-tailwind</dt>
             <p className="mb-4">
               WIP dive into AstroJS, building out a collection of re-usable base components to make webapp/dApp dev
@@ -995,7 +1047,7 @@ const Projects = () => {
           <div className="m-auto max-w-sm">
             <dt>dfm/diamond.json + dfm-min</dt>
             <p className="mb-4">
-              Started simply as the Starter Repo outlined below, dfm and the WIP diamond.json format its built on aims
+              Started simply as the Starter Repo outlined below, dfm and the WIP diamond.json format it's built on aims
               to be to Diamond driven Solidity development what NPM/package.json is to Node dev.
             </p>
             <p>
@@ -1090,7 +1142,7 @@ const Projects = () => {
               <a className="font-bold underline" href="https://fractional.foundation" target="_blank" rel="noreferrer">
                 Fractional.Foundation
               </a>
-              . Would love feedback on this idea. Tell me why its doomed to fail because it started to hurt my brain,
+              . Would love feedback on this idea. Tell me why it's doomed to fail because it started to hurt my brain,
               but then helped inspire Deluge.
             </p>
           </div>
