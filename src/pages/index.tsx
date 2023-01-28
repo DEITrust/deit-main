@@ -984,7 +984,7 @@ const Projects = () => {
             <dt>shinyblocks.js</dt>
             <p className="mb-4">
               Developed primarily for Diamond driven development, shinyblocks.js simplifies contract development in
-              Hardhat even when it's not an ERC2535 contract. I think it's... shiny :)
+              Hardhat even when it&apos;s not an ERC2535 contract. I think it&apos;s... shiny :)
             </p>
             <p>
               Repo available at{' '}
@@ -1047,7 +1047,7 @@ const Projects = () => {
           <div className="m-auto max-w-sm">
             <dt>dfm/diamond.json + dfm-min</dt>
             <p className="mb-4">
-              Started simply as the Starter Repo outlined below, dfm and the WIP diamond.json format it's built on aims
+              Started simply as the Starter Repo outlined below, dfm and the WIP diamond.json format it&apos;s built on aims
               to be to Diamond driven Solidity development what NPM/package.json is to Node dev.
             </p>
             <p>
@@ -1142,7 +1142,7 @@ const Projects = () => {
               <a className="font-bold underline" href="https://fractional.foundation" target="_blank" rel="noreferrer">
                 Fractional.Foundation
               </a>
-              . Would love feedback on this idea. Tell me why it's doomed to fail because it started to hurt my brain,
+              . Would love feedback on this idea. Tell me why it&apos;s doomed to fail because it started to hurt my brain,
               but then helped inspire Deluge.
             </p>
           </div>
