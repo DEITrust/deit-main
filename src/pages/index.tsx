@@ -354,19 +354,8 @@ const Web3Matrix = () => {
   const web3Classess = isConnected ? 'max-w-7xl' : 'max-w-xl rounded-xl'
   const otherClassess = isConnected ? 'hidden' : 'block'
 
-  const placeholderImages = [
-    'https://64.media.tumblr.com/b2ed9bddbee4d54b2216d6502e9dbd2c/tumblr_mv8db00xzQ1sso6sco1_500.gif',
-    'https://64.media.tumblr.com/b18cc606de2563686b4a8187824e3f5a/tumblr_ovi87pG1FK1v1fssvo1_500.gif',
-    'https://64.media.tumblr.com/071be6ea1791979ef77cce434242f3e3/tumblr_mw1r5kYICv1sso6sco1_400.gif',
-    'https://demobasics.pixienop.net/img/tweetcarts/squaretunnel-slices.gif',
-    'https://64.media.tumblr.com/c4438889bfc326313ff02ec6e9127d0c/tumblr_n2fri6ZHpK1sso6sco1_500.gif',
-    'https://i.pinimg.com/originals/03/a3/5c/03a35ceed20a3cc9dbce58307906c727.gif',
-    'https://i.pinimg.com/originals/e1/28/e4/e128e4a2eb7d61bb7e43e8448eb4c68c.gif',
-    'https://openseauserdata.com/files/3da5dc0e9b48d2953c082f9607c51fc1.gif',
-  ]
-  const [placeholderImg, setPlaceholderImg] = useState(
-    'https://64.media.tumblr.com/b2ed9bddbee4d54b2216d6502e9dbd2c/tumblr_mv8db00xzQ1sso6sco1_500.gif'
-  )
+  const placeholderImages = ['./1.gif', './2.gif', './3.gif', './4.gif', './5.gif', './6.gif', './7.gif', './8.gif']
+  const [placeholderImg, setPlaceholderImg] = useState('./1.gif')
 
   const [donation, setDonation] = useState(false)
   const donationImgClasses = donation ? 'scale-110 hover:scale-95 ' : 'hover:scale-110 '
