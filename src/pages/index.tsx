@@ -10,7 +10,7 @@ import {
   useDisconnect,
   usePrepareContractWrite,
   useContractWrite,
-  useContractRead
+  useContractRead,
 } from 'wagmi'
 import ConnectWallet from 'components/Connect/ConnectWallet'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
@@ -22,7 +22,7 @@ import { brokerABI } from './api/broker.abi'
 
 export default function Home() {
   return (
-    <div className={`${styles.container}`} >
+    <div className={`${styles.container}`}>
       <Header />
       <Main />
       <Footer />
@@ -63,7 +63,7 @@ const Main = () => {
 
 const Brand = () => {
   return (
-    <div className="max-w-lg rounded-xl bg-slate-200 p-6 text-center my-8 text-neutral-900">
+    <div className="my-8 max-w-lg rounded-xl bg-slate-200 p-6 text-center text-neutral-900">
       <h2 className="mb-2 text-3xl font-medium  font-bold underline">
         Digital Estate
         <br /> Investment Trust
@@ -79,19 +79,22 @@ const DEITBroker = props => {
   // const price = 100000
   const base = ethers.utils.parseEther('1.0')
 
-  
-  const { data:price, isError, isLoading } = useContractRead({
+  const {
+    data: price,
+    isError,
+    isLoading,
+  } = useContractRead({
     address: props.BROKER_ADDRESS,
     abi: props.BROKER,
     functionName: 'price',
     onSuccess(data) {
-      const deit = ethers.BigNumber.from(base).div(data)           
-      const options = {value:ethers.utils.parseEther('1.0')}
+      const deit = ethers.BigNumber.from(base).div(data)
+      const options = { value: ethers.utils.parseEther('1.0') }
       setBuyParams({
-        'ETH':1.0,
-        'DEIT':deit,
-        'amount':data,
-        'options':options
+        ETH: 1.0,
+        DEIT: deit,
+        amount: data,
+        options: options,
       })
     },
   })
@@ -100,56 +103,56 @@ const DEITBroker = props => {
     ETH: 1.0,
     DEIT: 100000,
     amount: ethers.BigNumber.from(price).mul(base),
-    options: {value:base},
+    options: { value: base },
   })
 
   const handleETHChange = event => {
-    if(!price || !event.target.value) return
-    const ethVal = ethers.FixedNumber.from(event.target.value)//String()
-    
+    if (!price || !event.target.value) return
+    const ethVal = ethers.FixedNumber.from(event.target.value) //String()
+
     const deitPrint = ethVal ? ethers.BigNumber.from(ethers.utils.parseEther(String(ethVal))).div(price) : 0
     const amount = ethers.utils.parseEther(String(deitPrint))
-    const options = {value:ethers.utils.parseEther(ethVal ? String(ethVal) : 0)}
+    const options = { value: ethers.utils.parseEther(ethVal ? String(ethVal) : 0) }
     setBuyParams({
-      'ETH': ethVal,
-      'DEIT': deitPrint,
-      'amount': amount,
-      'options': options
-    })        
+      ETH: ethVal,
+      DEIT: deitPrint,
+      amount: amount,
+      options: options,
+    })
   }
   const handleDEITChange = event => {
-    if(!price || !event.target.value) return
+    if (!price || !event.target.value) return
     const deitInput = String(event.target.value)
     const amount = deitInput ? ethers.utils.parseEther(deitInput) : 0
-    const ethPrint = ethers.utils.formatUnits(ethers.BigNumber.from(amount).mul(price).div(base),18)
-    const options = {value:ethers.utils.parseEther(ethPrint)}
+    const ethPrint = ethers.utils.formatUnits(ethers.BigNumber.from(amount).mul(price).div(base), 18)
+    const options = { value: ethers.utils.parseEther(ethPrint) }
     setBuyParams({
-      'ETH': ethPrint,
-      'DEIT': deitInput,
-      'amount': amount,
-      'options': options
-    })        
+      ETH: ethPrint,
+      DEIT: deitInput,
+      amount: amount,
+      options: options,
+    })
   }
-  
-   const { config, refetch, error } = usePrepareContractWrite({
+
+  const { config, refetch, error } = usePrepareContractWrite({
     address: props.BROKER_ADDRESS,
-    abi: props.BROKER,   
+    abi: props.BROKER,
     functionName: 'buy',
-    args:[buyParams.amount],
-    overrides:buyParams.options 
+    args: [buyParams.amount],
+    overrides: buyParams.options,
   })
 
-  const {write:buyDEIT} = useContractWrite(config)
+  const { write: buyDEIT } = useContractWrite(config)
 
   const handleBuy = event => {
-    event.preventDefault()    
+    event.preventDefault()
     console.log(buyParams)
-    if (props.ethBalance >= buyParams.amount) {      
+    if (props.ethBalance >= buyParams.amount) {
       refetch()
       buyDEIT()
     }
   }
-  
+
   return (
     <div className="text-left font-bold">
       <h4 className="pt-2 text-lg font-bold text-neutral-900 underline">DEIT Broker Contract</h4>
@@ -159,29 +162,48 @@ const DEITBroker = props => {
             <label htmlFor="ETH" className="mt-4">
               ETH
             </label>
-            <input id="ETH" type="text" onChange={handleETHChange} placeholder={buyParams.ETH} value={buyParams.ETH} name="ETH" className="mt-4 bg-neutral-50 p-4" />
+            <input
+              id="ETH"
+              type="text"
+              onChange={handleETHChange}
+              placeholder={buyParams.ETH}
+              value={buyParams.ETH}
+              name="ETH"
+              className="mt-4 bg-neutral-50 p-4"
+            />
           </div>
           <div className="flex flex-col">
             <label htmlFor="DEIT" className="mt-4">
               DEIT
             </label>
-            <input id="DEIT" type="text" onChange={handleDEITChange} placeholder={price} name={buyParams.DEIT} value={buyParams.DEIT} className="mt-4 bg-neutral-50 p-4" />
+            <input
+              id="DEIT"
+              type="text"
+              onChange={handleDEITChange}
+              placeholder={price}
+              name={buyParams.DEIT}
+              value={buyParams.DEIT}
+              className="mt-4 bg-neutral-50 p-4"
+            />
           </div>
 
-          <button onClick={handleBuy} className="mt-4 w-full  bg-green-500 hover:bg-green-400 p-4 text-neutral-200 transition-all duration-150 hover:scale-105">
+          <button
+            onClick={handleBuy}
+            className="mt-4 w-full  bg-green-500 p-4 text-neutral-200 transition-all duration-150 hover:scale-105 hover:bg-green-400"
+          >
             Buy DEIT
           </button>
           {error && false && <div>An error occurred preparing the transaction: {error.message}</div>}
-
-        </>        
+        </>
       )}
 
       {!props.chain ||
-        (props.chain?.id != 31337 && <div className="mt-8 bg-neutral-700 p-4 font-bold text-neutral-50">Ethereum Goerli Only</div>)}
+        (props.chain?.id != 31337 && (
+          <div className="mt-8 bg-neutral-700 p-4 font-bold text-neutral-50">Ethereum Goerli Only</div>
+        ))}
     </div>
   )
 }
-
 
 const TransferForm = props => {
   const [transferParams, setTransferParams] = useState({
@@ -245,7 +267,7 @@ const TransferForm = props => {
             className="mt-4 bg-neutral-50 p-4"
           />
           <button
-            className=" mt-4 w-full bg-slate-600 hover:bg-green-400 p-4 text-neutral-200 transition-all duration-150 hover:scale-105"
+            className=" mt-4 w-full bg-slate-600 p-4 text-neutral-200 transition-all duration-150 hover:scale-105 hover:bg-green-400"
             disabled={!write}
             onClick={handleTransfer}
           >
@@ -256,7 +278,9 @@ const TransferForm = props => {
       )}
 
       {!props.chain ||
-        (props.chain?.id != 31337 && <div className="mt-8 bg-neutral-700 text-neutral-50 p-4 font-bold">Ethereum Goerli Only</div>)}
+        (props.chain?.id != 31337 && (
+          <div className="mt-8 bg-neutral-700 p-4 font-bold text-neutral-50">Ethereum Goerli Only</div>
+        ))}
     </div>
   )
 }
@@ -301,11 +325,19 @@ const Web3Matrix = () => {
   const { address, isConnected, connector } = useAccount()
   const { chain, chains } = useNetwork()
   const { isLoading: isNetworkLoading, pendingChainId, switchNetwork } = useSwitchNetwork()
-  const { data: balance, isLoading: isBalanceLoading, refetch:refetchETH } = useBalance({
+  const {
+    data: balance,
+    isLoading: isBalanceLoading,
+    refetch: refetchETH,
+  } = useBalance({
     address: address,
   })
 
-  const { data: tokenBalance, isTokenLoading: isTokenBalanceLoading, refetch:refetchToken } = useBalance({
+  const {
+    data: tokenBalance,
+    isTokenLoading: isTokenBalanceLoading,
+    refetch: refetchToken,
+  } = useBalance({
     address: address,
     token: TOKEN_ADDRESS,
   })
@@ -350,10 +382,14 @@ const Web3Matrix = () => {
   const handleDonationToggle = () => {
     setDonation(!donation)
   }
-  const connectedStyle =  {background:"url('https://mir-s3-cdn-cf.behance.net/project_modules/fs/bbefa799786133.5efa9bf3d1b49.gif')", backgroundSize: "cover", backgroundPosition: 'center'}
+  const connectedStyle = {
+    background: "url('https://mir-s3-cdn-cf.behance.net/project_modules/fs/bbefa799786133.5efa9bf3d1b49.gif')",
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  }
 
   return (
-    <div className={`${web3Classess} w-full bg-neutral-500/10 sm:p-6 p-2 pt-6 text-center`}>
+    <div className={`${web3Classess} w-full bg-neutral-500/10 p-2 pt-6 text-center sm:p-6`}>
       <h3 className="mb-2 text-2xl font-bold sm:text-3xl">
         <span className="underline">Enter Web3</span>{' '}
         <span className="rounded-2xl bg-neutral-50 p-2 align-text-top text-sm font-thin text-neutral-900 no-underline">
@@ -370,7 +406,7 @@ const Web3Matrix = () => {
               <button
                 onClick={openConnectModal}
                 type="button"
-                className="m-1 rounded-3xl bg-cyan-400 hover:bg-cyan-300 py-2 px-4 font-bold text-white transition-all duration-150 hover:scale-110"
+                className="m-1 rounded-3xl bg-cyan-400 py-2 px-4 font-bold text-white transition-all duration-150 hover:scale-110 hover:bg-cyan-300"
               >
                 <span className="underline">Connect Wallet</span>
                 <br />
@@ -382,7 +418,7 @@ const Web3Matrix = () => {
               <button
                 onClick={openAccountModal}
                 type="button"
-                className="m-1 bg-slate-600 p-4  hover:bg-green-400 text-white transition-all duration-150 hover:scale-105"
+                className="m-1 bg-slate-600 p-4  text-white transition-all duration-150 hover:scale-105 hover:bg-green-400"
               >
                 Account
               </button>
@@ -392,7 +428,7 @@ const Web3Matrix = () => {
               <button
                 onClick={openChainModal}
                 type="button"
-                className="m-1 bg-slate-600 p-4 hover:bg-green-400 text-white transition-all duration-150 hover:scale-105"
+                className="m-1 bg-slate-600 p-4 text-white transition-all duration-150 hover:scale-105 hover:bg-green-400"
               >
                 Select Chain
               </button>
@@ -402,7 +438,7 @@ const Web3Matrix = () => {
               <button
                 onClick={disconnect}
                 type="button"
-                className="m-1  bg-red-500  hover:bg-red-400 p-4 text-white transition-all duration-150 hover:scale-105"
+                className="m-1  bg-red-500  p-4 text-white transition-all duration-150 hover:scale-105 hover:bg-red-400"
               >
                 Exit Web3
               </button>
@@ -412,8 +448,8 @@ const Web3Matrix = () => {
       </div>
       {isConnected && (
         <div className="mt-8 flex w-full flex-col sm:flex-row">
-          <div className={`flex basis-1/3 flex-col sm:p-4 p-2 sm:p-8 sm:pt-0 ${styles.dl}`}>
-            <div className="mt-0 sm:mb-8 mb-4 bg-slate-200 p-8 text-neutral-900">
+          <div className={`flex basis-1/3 flex-col p-2 sm:p-4 sm:p-8 sm:pt-0 ${styles.dl}`}>
+            <div className="mt-0 mb-4 bg-slate-200 p-8 text-neutral-900 sm:mb-8">
               <dl>
                 <h4 className="pt-2 text-lg font-bold text-neutral-900 underline">Connector</h4>
                 <dd className="my-2">
@@ -441,7 +477,8 @@ const Web3Matrix = () => {
                         className={
                           (x.id === chain?.id
                             ? 'cursor-not-allowed  bg-green-500 hover:scale-90'
-                            : 'bg-slate-600 hover:scale-105 hover:bg-green-400') + ' m-1 w-full p-4 text-white transition-all duration-150'
+                            : 'bg-slate-600 hover:scale-105 hover:bg-green-400') +
+                          ' m-1 w-full p-4 text-white transition-all duration-150'
                         }
                       >
                         {x.name}
@@ -452,7 +489,7 @@ const Web3Matrix = () => {
                 </dd>
               </dl>
             </div>
-            <div className=" sm:mb-8 mb-4 w-full  bg-slate-200 p-4 text-neutral-900 sm:p-8">
+            <div className=" mb-4 w-full bg-slate-200  p-4 text-neutral-900 sm:mb-8 sm:p-8">
               <dl className={styles.dl}>
                 <h4 className="pt-2 text-lg font-bold text-neutral-900 underline">Account</h4>
                 <dd className="break-all">{address ? `${address}` : 'n/a'}</dd>
@@ -472,14 +509,13 @@ const Web3Matrix = () => {
                 <dd className="mt-4 break-all text-neutral-400">{address ? <SignMsg /> : 'n/a'} </dd>
                 <button
                   onClick={handleRefresh}
-                  className=" mt-2 w-full bg-slate-600 hover:bg-green-400 p-4 text-neutral-200 transition-all duration-150 hover:scale-105"
-                  
+                  className=" mt-2 w-full bg-slate-600 p-4 text-neutral-200 transition-all duration-150 hover:scale-105 hover:bg-green-400"
                 >
                   Refresh
                 </button>
               </dl>
             </div>
-            <div className=" sm:mb-8 mb-4 bg-slate-900/40  pb-4 px-4">
+            <div className=" mb-4 bg-slate-900/40 px-4  pb-4 sm:mb-8">
               <dt>DEIT Token</dt>
               <p className="mb-2">
                 A simple ERC20 token developed with ERC2535. Initially entirely useless and made for a blog post for{' '}
@@ -500,19 +536,19 @@ const Web3Matrix = () => {
                   <span className="rounded-2xl bg-neutral-50 p-2 align-text-top text-sm font-thin text-neutral-900 no-underline">
                     alpha
                   </span>
-                  &nbsp;> Goerli Launch
+                  &nbsp;&gt; Goerli Launch
                 </div>
                 <div className="mt-8">
                   <span className="rounded-2xl bg-neutral-50 p-2 align-text-top text-sm font-thin text-neutral-900 no-underline">
                     beta
                   </span>
-                  &nbsp;> ETH Mainnet Launch
+                  &nbsp;&gt; ETH Mainnet Launch
                 </div>
               </div>
             </div>
           </div>
           <div className="basis-2/3 sm:ml-4">
-            <div className={` sm:mb-8 mb-4 flex flex-col bg-slate-200 p-4 text-neutral-900 sm:flex-row ${styles.dl}`}>
+            <div className={` mb-4 flex flex-col bg-slate-200 p-4 text-neutral-900 sm:mb-8 sm:flex-row ${styles.dl}`}>
               <div className="basis-1/2 p-6">
                 <DEITBroker
                   BROKER={BROKER}
@@ -528,27 +564,21 @@ const Web3Matrix = () => {
               </div>
             </div>
             <div className=" mb-4 flex flex-col sm:flex-row">
-              <div className="sm:mt-0 mt-2 basis-1/2 bg-slate-200 p-4 text-neutral-900 sm:mt-0 sm:mr-8 sm:p-8">
+              <div className="mt-2 basis-1/2 bg-slate-200 p-4 text-neutral-900 sm:mt-0 sm:mt-0 sm:mr-8 sm:p-8">
                 <div className={`break-all ${styles.dl}`}>
                   <h4 className="pt-2 text-lg font-bold text-neutral-900 underline">Official ETH Contracts</h4>
-                  <ul className='mb-4'>
+                  <ul className="mb-4">
                     <li>
                       <strong>DEIT Token Testnet Address:</strong>
                       <br />
-                      <a
-                        className="text-sm underline"
-                        href={`https://goerli.etherscan.io/address/${TOKEN_ADDRESS}`}
-                      >
+                      <a className="text-sm underline" href={`https://goerli.etherscan.io/address/${TOKEN_ADDRESS}`}>
                         {TOKEN_ADDRESS}
                       </a>
                     </li>
                     <li>
                       <strong>DEIT Broker Testnet Address:</strong>
                       <br />{' '}
-                      <a
-                        className="text-sm underline"
-                        href={`https://goerli.etherscan.io/address/${BROKER_ADDRESS}`}
-                      >
+                      <a className="text-sm underline" href={`https://goerli.etherscan.io/address/${BROKER_ADDRESS}`}>
                         {BROKER_ADDRESS}
                       </a>
                     </li>
@@ -595,8 +625,8 @@ const Web3Matrix = () => {
               </div>
             </div>
 
-            <div className={`${styles.dl} mt-4 sm:mt-8 flex flex-col sm:flex-row sm:space-x-8`}>
-              <div className="mb-4 sm:mb-8 basis-1/2  bg-slate-900/40 pb-4  px-4">
+            <div className={`${styles.dl} mt-4 flex flex-col sm:mt-8 sm:flex-row sm:space-x-8`}>
+              <div className="mb-4 basis-1/2 bg-slate-900/40  px-4 pb-4  sm:mb-8">
                 <dt>DEIT Pool (coming soon)</dt>
                 <p>A simple multi-token pool prototype developed with ERC2535 and ERC1155.</p>
                 <p className="mt-4">
@@ -631,7 +661,7 @@ const Web3Matrix = () => {
 
 const DonationForm = props => {
   return (
-    <div className=" text-left font-bold  bg-slate-900/40 pb-4  px-4">
+    <div className=" bg-slate-900/40 px-4  pb-4 text-left  font-bold">
       <dt>R&D Donations</dt>
       {props.chain && props.chain?.id == 1 && (
         <div className="flex flex-col">
@@ -661,19 +691,32 @@ const DonationForm = props => {
           </p>
         </div>
       )}
-      {props.chain?.id != 1 && <div>
-        <div className="mt-8 bg-slate-200 p-4 font-bold text-neutral-900">Ethereum Mainnet Only</div>
-        <div className="mt-8 bg-slate-200 p-4 font-normal text-neutral-900"><a href="mailto:proggR@pm.me" target="_blank" rel="noreferrer" className='underline'>Contact me</a> and let me know what research you'd like to see funded or which projects below I should keep hacking forward/ aim to integrate with <strong>DEIT</strong>.</div>
-        <div className="mt-8 bg-slate-200 p-4 font-normal text-neutral-900">Need dev work done? <a href="mailto:proggR@pm.me" target="_blank" rel="noreferrer" className='underline'>Contact me</a>. Will entertain Web3 contracts/ fulltime work, or select Web2 contracts of interest.</div>
+      {props.chain?.id != 1 && (
+        <div>
+          <div className="mt-8 bg-slate-200 p-4 font-bold text-neutral-900">Ethereum Mainnet Only</div>
+          <div className="mt-8 bg-slate-200 p-4 font-normal text-neutral-900">
+            <a href="mailto:proggR@pm.me" target="_blank" rel="noreferrer" className="underline">
+              Contact me
+            </a>{' '}
+            and let me know what research you'd like to see funded or which projects below I should keep hacking
+            forward/ aim to integrate with <strong>DEIT</strong>.
+          </div>
+          <div className="mt-8 bg-slate-200 p-4 font-normal text-neutral-900">
+            Need dev work done?{' '}
+            <a href="mailto:proggR@pm.me" target="_blank" rel="noreferrer" className="underline">
+              Contact me
+            </a>
+            . Will entertain Web3 contracts/ fulltime work, or select Web2 contracts of interest.
+          </div>
         </div>
-      }
+      )}
     </div>
   )
 }
 
 const AndThen = () => {
   return (
-    <div className=' bg-slate-900/40 pb-4  px-4'>
+    <div className=" bg-slate-900/40 px-4  pb-4">
       <dt>And then...</dt>
       <p className="mb-2">
         <strong>DEIT</strong> is an ongoing project researching and developing whatever comes to mind and seems
@@ -724,11 +767,11 @@ const SignMsg = () => {
   return (
     <>
       <p>
-        <input value={msg} onChange={e => setMsg(e.target.value)} className="p-4 w-full" />
+        <input value={msg} onChange={e => setMsg(e.target.value)} className="w-full p-4" />
         <button
           disabled={isLoading}
           onClick={() => signMsg()}
-          className="mt-4 w-full bg-slate-600 hover:bg-green-400 p-4 text-white transition-all duration-150 hover:scale-105"
+          className="mt-4 w-full bg-slate-600 p-4 text-white transition-all duration-150 hover:scale-105 hover:bg-green-400"
         >
           Sign
         </button>
@@ -747,20 +790,18 @@ const Footer = () => {
       <div>
         <ThemeToggleButton />
       </div>
-     
 
       <div className="mb-8 flex w-full flex-col items-center justify-end sm:mb-0 sm:max-w-xl sm:flex-row">
         <div>
-          <strong className="sm:mr-8 text-4xl">DEIT.</strong>
+          <strong className="text-4xl sm:mr-8">DEIT.</strong>
         </div>
-        <div className=''>
-          <a
-              href="https://www.linkedin.com/in/brandon-thorn-03662b36/"
-              target="_blank"
-              rel="noreferrer"
-            >
-            <img src="./me.jpeg" alt="Brandon Thorn, the guy with too many ideas and not enough time or seed capital...yet"
-                  className="sm:h-12 sm:ml-4 sm:py-1 sm:w-10 w-24 my-4 sm:my-0"/>
+        <div className="">
+          <a href="https://www.linkedin.com/in/brandon-thorn-03662b36/" target="_blank" rel="noreferrer">
+            <img
+              src="./me.jpeg"
+              alt="Brandon Thorn, the guy with too many ideas and not enough time or seed capital...yet"
+              className="my-4 w-24 sm:my-0 sm:ml-4 sm:h-12 sm:w-10 sm:py-1"
+            />
           </a>
         </div>
         <div className="w-full text-center ">
@@ -834,7 +875,7 @@ const Foundation = () => {
 
 const StacksSkills = () => {
   return (
-    <div className={`mt-6 sm:mt-0 basis-1/3 rounded-xl bg-neutral-500/10 p-6 text-center ${styles.dl}`}>
+    <div className={`mt-6 basis-1/3 rounded-xl bg-neutral-500/10 p-6 text-center sm:mt-0 ${styles.dl}`}>
       <h3 className="mb-4 text-3xl font-bold underline">
         Languages/
         <br className="sm:hidden" />
