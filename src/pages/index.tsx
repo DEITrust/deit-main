@@ -64,7 +64,7 @@ const Main = () => {
 const Brand = () => {
   return (
     <div className="my-8 max-w-lg rounded-xl bg-slate-200 p-6 text-center text-neutral-900">
-      <h2 className="mb-2 text-3xl font-medium  font-bold underline">
+      <h2 className="mb-2 text-3xl font-bold underline">
         Digital Estate
         <br /> Investment Trust
       </h2>
@@ -88,20 +88,21 @@ const DEITBroker = props => {
     abi: props.BROKER,
     functionName: 'price',
     onSuccess(data) {
-      const deit = ethers.BigNumber.from(base).div(data)
+      const price = ethers.BigNumber.from(String(data))
+      const deit = ethers.BigNumber.from(base).div(price)
       const options = { value: ethers.utils.parseEther('1.0') }
       setBuyParams({
-        ETH: 1.0,
+        ETH: ethers.BigNumber.from(String(1.0)),
         DEIT: deit,
-        amount: data,
+        amount: price,
         options: options,
       })
     },
   })
 
   const [buyParams, setBuyParams] = useState({
-    ETH: 1.0,
-    DEIT: 100000,
+    ETH: ethers.BigNumber.from(1.0),
+    DEIT: ethers.BigNumber.from(100000),
     amount: ethers.BigNumber.from(price).mul(base),
     options: { value: base },
   })
@@ -110,11 +111,14 @@ const DEITBroker = props => {
     if (!price || !event.target.value) return
     const ethVal = ethers.FixedNumber.from(event.target.value) //String()
 
-    const deitPrint = ethVal ? ethers.BigNumber.from(ethers.utils.parseEther(String(ethVal))).div(price) : 0
+    const deitPrint = ethVal
+      ? ethers.BigNumber.from(ethers.utils.parseEther(String(ethVal))).div(ethers.BigNumber.from(String(price)))
+      : ethers.BigNumber.from(String(0))
     const amount = ethers.utils.parseEther(String(deitPrint))
-    const options = { value: ethers.utils.parseEther(ethVal ? String(ethVal) : 0) }
+    const ethParse = ethVal ? String(ethVal) : String(0)
+    const options = { value: ethers.utils.parseEther(ethParse) }
     setBuyParams({
-      ETH: ethVal,
+      ETH: ethers.BigNumber.from(String(ethVal)),
       DEIT: deitPrint,
       amount: amount,
       options: options,
@@ -124,12 +128,17 @@ const DEITBroker = props => {
     if (!price || !event.target.value) return
     const deitInput = String(event.target.value)
     const amount = deitInput ? ethers.utils.parseEther(deitInput) : 0
-    const ethPrint = ethers.utils.formatUnits(ethers.BigNumber.from(amount).mul(price).div(base), 18)
+    const ethPrint = ethers.utils.formatUnits(
+      ethers.BigNumber.from(amount)
+        .mul(ethers.BigNumber.from(String(price)))
+        .div(base),
+      18
+    )
     const options = { value: ethers.utils.parseEther(ethPrint) }
     setBuyParams({
-      ETH: ethPrint,
-      DEIT: deitInput,
-      amount: amount,
+      ETH: ethers.BigNumber.from(ethPrint),
+      DEIT: ethers.BigNumber.from(deitInput),
+      amount: ethers.BigNumber.from(amount),
       options: options,
     })
   }
@@ -166,8 +175,8 @@ const DEITBroker = props => {
               id="ETH"
               type="text"
               onChange={handleETHChange}
-              placeholder={buyParams.ETH}
-              value={buyParams.ETH}
+              placeholder={String(buyParams.ETH)}
+              value={String(buyParams.ETH)}
               name="ETH"
               className="mt-4 bg-neutral-50 p-4"
             />
@@ -180,9 +189,9 @@ const DEITBroker = props => {
               id="DEIT"
               type="text"
               onChange={handleDEITChange}
-              placeholder={price}
-              name={buyParams.DEIT}
-              value={buyParams.DEIT}
+              placeholder={String(price)}
+              name="DEIT"
+              value={String(buyParams.DEIT)}
               className="mt-4 bg-neutral-50 p-4"
             />
           </div>
@@ -335,7 +344,7 @@ const Web3Matrix = () => {
 
   const {
     data: tokenBalance,
-    isTokenLoading: isTokenBalanceLoading,
+    isLoading: isTokenBalanceLoading,
     refetch: refetchToken,
   } = useBalance({
     address: address,
@@ -354,12 +363,13 @@ const Web3Matrix = () => {
   const web3Classess = isConnected ? 'max-w-7xl' : 'max-w-xl rounded-xl'
   const otherClassess = isConnected ? 'hidden' : 'block'
 
-  const placeholderImages = ['./1.gif', './2.gif', './3.gif', './4.gif', './5.gif', './6.gif', './7.gif', './8.gif']
   const [placeholderImg, setPlaceholderImg] = useState('./1.gif')
 
   const [donation, setDonation] = useState(false)
   const donationImgClasses = donation ? 'scale-110 hover:scale-95 ' : 'hover:scale-110 '
+
   useEffect(() => {
+    const placeholderImages = ['./1.gif', './2.gif', './3.gif', './4.gif', './5.gif', './6.gif', './7.gif', './8.gif']
     const swapImage = () => {
       setPlaceholderImg(placeholderImages[Math.floor(Math.random() * placeholderImages.length)])
       const imageSwap = setTimeout(swapImage, 5000)
@@ -425,7 +435,9 @@ const Web3Matrix = () => {
 
             {disconnect && !openConnectModal && (
               <button
-                onClick={disconnect}
+                onClick={() => {
+                  disconnect()
+                }}
                 type="button"
                 className="m-1  bg-red-500  p-4 text-white transition-all duration-150 hover:scale-105 hover:bg-red-400"
               >
@@ -437,7 +449,7 @@ const Web3Matrix = () => {
       </div>
       {isConnected && (
         <div className="mt-8 flex w-full flex-col sm:flex-row">
-          <div className={`flex basis-1/3 flex-col p-2 sm:p-4 sm:p-8 sm:pt-0 ${styles.dl}`}>
+          <div className={`flex basis-1/3 flex-col p-2 sm:p-8 sm:pt-0 ${styles.dl}`}>
             <div className="mt-0 mb-4 bg-slate-200 p-8 text-neutral-900 sm:mb-8">
               <dl>
                 <h4 className="pt-2 text-lg font-bold text-neutral-900 underline">Connector</h4>
@@ -536,7 +548,7 @@ const Web3Matrix = () => {
               </div>
             </div>
           </div>
-          <div className="basis-2/3 sm:ml-4">
+          <div className="basis-2/3">
             <div className={` mb-4 flex flex-col bg-slate-200 p-4 text-neutral-900 sm:mb-8 sm:flex-row ${styles.dl}`}>
               <div className="basis-1/2 p-6">
                 <DEITBroker
@@ -553,7 +565,7 @@ const Web3Matrix = () => {
               </div>
             </div>
             <div className=" mb-4 flex flex-col sm:flex-row">
-              <div className="mt-2 basis-1/2 bg-slate-200 p-4 text-neutral-900 sm:mt-0 sm:mt-0 sm:mr-8 sm:p-8">
+              <div className="mt-2 basis-1/2 bg-slate-200 p-4 text-neutral-900 sm:mt-0 sm:mr-8 sm:p-8">
                 <div className={`break-all ${styles.dl}`}>
                   <h4 className="pt-2 text-lg font-bold text-neutral-900 underline">Official ETH Contracts</h4>
                   <ul className="mb-4">
@@ -606,7 +618,6 @@ const Web3Matrix = () => {
                   <img
                     src={placeholderImg}
                     onClick={handleDonationToggle}
-                    chain={chain}
                     className={`${donationImgClasses} w-full cursor-pointer transition-all`}
                     alt="rabbit_hole"
                   />
@@ -628,7 +639,7 @@ const Web3Matrix = () => {
                   Extending DEIT Pool, DEIT Vault enables condition based locking mechanisms leveraging ERC721 keys. It
                   will start simply with a block count lock condition and a claim based rewards model, and build toward
                   the end goal of rolling an efficient distribution/airdropping mechanism to distribute rewards as
-                  they're accrued.
+                  they&apos;re accrued.
                 </p>
                 <p className="mt-4">
                   <span className="rounded-2xl bg-neutral-50 p-2 align-text-top text-sm font-thin text-neutral-900 no-underline">
@@ -687,7 +698,7 @@ const DonationForm = props => {
             <a href="mailto:proggR@pm.me" target="_blank" rel="noreferrer" className="underline">
               Contact me
             </a>{' '}
-            and let me know what research you'd like to see funded or which projects below I should keep hacking
+            and let me know what research you&apos;d like to see funded or which projects below I should keep hacking
             forward/ aim to integrate with <strong>DEIT</strong>.
           </div>
           <div className="mt-8 bg-slate-200 p-4 font-normal text-neutral-900">
@@ -709,12 +720,12 @@ const AndThen = () => {
       <dt>And then...</dt>
       <p className="mb-2">
         <strong>DEIT</strong> is an ongoing project researching and developing whatever comes to mind and seems
-        interesting largely for fun. While I'm looking for real work in web3 for{' '}
+        interesting largely for fun. While I&apos;m looking for real work in web3 for{' '}
         <a href="https://github.com/proggR" target="_blank" rel="noreferrer" className="underline">
           myself
         </a>{' '}
-        at the moment, I'd also love to find funders for <strong>DEIT</strong> in order to stay heads down hacking out
-        any of the projects or diving down any of the research interests listed below. Even a little ramp would go a
+        at the moment, I&apos;d also love to find funders for <strong>DEIT</strong> in order to stay heads down hacking
+        out any of the projects or diving down any of the research interests listed below. Even a little ramp would go a
         long way, allowing me a brief reprieve from normal work to live my dream and HACK THE PLANET.
       </p>
       <p>
@@ -849,8 +860,8 @@ const Foundation = () => {
           <div>
             <p className="mb-4 text-sm sm:mb-8">
               With the computer and stuff, the difference between a rich guy and a poor guy, to me, is nothing. Because
-              I don't like big houses, I don't drive a car, so you know, I just live in a small apartment and I have my
-              computer, which is really cool.
+              I don&apos;t like big houses, I don&apos;t drive a car, so you know, I just live in a small apartment and
+              I have my computer, which is really cool.
             </p>
             <p>
               <strong>&mdash; Norm MacDonald</strong> / RIP <strong>♥</strong>
@@ -962,7 +973,8 @@ const Projects = () => {
             <dt>updraft-astro-tailwind</dt>
             <p className="mb-4">
               WIP dive into AstroJS, building out a collection of re-usable base components to make webapp/dApp dev
-              easier. Includes core simple base components + a growing list of more complex "Prefab" components.
+              easier. Includes core simple base components + a growing list of more complex &quot;Prefab&quot;
+              components.
             </p>
             <p>
               Repo available at{' '}
@@ -1090,9 +1102,9 @@ const Projects = () => {
           <div className="m-auto max-w-sm">
             <dt>Bottlecap/Deluge</dt>
             <p className="mb-4">
-              Inspired by BitTorrent's Peer Wire Protocol and JAK Bank's Savings Points, Deluge aims to define a
-              reusable standard for routing capital from point A to point B, complete with DAuth, DEIT's model for
-              bubbling transaction event data to delegated authorities to automate business processes/taxes.
+              Inspired by BitTorrent&apos;s Peer Wire Protocol and JAK Bank&apos;s Savings Points, Deluge aims to define
+              a reusable standard for routing capital from point A to point B, complete with DAuth, DEIT&apos;s model
+              for bubbling transaction event data to delegated authorities to automate business processes/taxes.
             </p>
             <p>
               Currently in a fairly{' '}
@@ -1115,8 +1127,8 @@ const Projects = () => {
             <dt>Accounts/Contacts</dt>
             <p className="mb-4">
               <strong>DEIT Accounts</strong> is a simple accounting service tailored for crypto transactions that
-              calculates your tax liabilities based on your tracked activity, providing you a real time report so you're
-              not caught in the dark.
+              calculates your tax liabilities based on your tracked activity, providing you a real time report so
+              you&apos;re not caught in the dark.
             </p>
             <p>
               <strong>DEIT Contacts</strong> is a simple, if not still too simple, contact/subscription/newsletter
