@@ -283,13 +283,19 @@ export const Web3Matrix = () => {
                     <ul className="">
                       <li>
                         <strong>DEIT Token Mumbai Contract:</strong>{' '}
-                        <a className="text-sm underline" href={`https://goerli.etherscan.io/address/${TOKEN_ADDRESS}`}>
+                        <a
+                          className="text-sm underline"
+                          href={`https://mumbai.polygonscan.com/address/${TOKEN_ADDRESS}`}
+                        >
                           {TOKEN_ADDRESS}
                         </a>
                       </li>
                       <li>
                         <strong>DEIT Broker Mumbai Contract:</strong>{' '}
-                        <a className="text-sm underline" href={`https://goerli.etherscan.io/address/${BROKER_ADDRESS}`}>
+                        <a
+                          className="text-sm underline"
+                          href={`https://mumbai.polygonscan.com/address/${BROKER_ADDRESS}`}
+                        >
                           {BROKER_ADDRESS}
                         </a>
                       </li>

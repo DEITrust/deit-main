@@ -2,7 +2,7 @@ export const Music = () => {
   return (
     <div className="mt-8 flex flex-row bg-slate-900/40 px-4 pb-4 sm:mb-8">
       <a className="flex flex-row" href="https://www.youtube.com/watch?v=JCvOjBb1yHg" target="_blank" rel="noreferrer">
-        <img className="mt-4 h-16" src="./zakzakazakzak.png" />
+        <img className="mt-4 h-16" src="./zakzakazakzak.png" alt="cover art" />
         <div className="ml-4 mt-4 flex flex-col pt-2">
           <div>
             <em>Zak-Zaka-Zak-Zak</em>
