@@ -18,3 +18,5 @@ export const DeitSupply = props => {
 
   return <span className="text-xs">{isLoading ? 'loading' : String(ethers.utils.formatUnits(String(data), 18))} </span>
 }
+
+export default DeitSupply

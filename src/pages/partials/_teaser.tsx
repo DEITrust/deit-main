@@ -6,3 +6,5 @@ export const SlimeBrawlTeaser = () => {
     </div>
   )
 }
+
+export default SlimeBrawlTeaser

@@ -21,3 +21,5 @@ export const PooledDEIT = props => {
     </span>
   )
 }
+
+export default PooledDEIT

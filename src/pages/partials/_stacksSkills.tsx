@@ -84,3 +84,5 @@ export const StacksSkills = () => {
     </div>
   )
 }
+
+export default StacksSkills

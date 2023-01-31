@@ -47,3 +47,5 @@ export const Foundation = () => {
     </div>
   )
 }
+
+export default Foundation

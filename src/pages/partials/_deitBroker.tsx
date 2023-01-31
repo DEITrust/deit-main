@@ -198,3 +198,5 @@ export const DEITBroker = props => {
     </div>
   )
 }
+
+export default DEITBroker

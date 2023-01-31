@@ -96,3 +96,5 @@ export const DonationForm = props => {
     </div>
   )
 }
+
+export default DonationForm

@@ -20,3 +20,5 @@ export const PooledETH = props => {
     </span>
   )
 }
+
+export default PooledETH

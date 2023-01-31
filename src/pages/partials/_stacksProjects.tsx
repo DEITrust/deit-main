@@ -9,3 +9,5 @@ export const StacksProjects = () => {
     </div>
   )
 }
+
+export default StacksProjects

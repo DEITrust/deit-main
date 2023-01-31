@@ -27,3 +27,5 @@ export const AndThen = () => {
     </div>
   )
 }
+
+export default AndThen

@@ -382,3 +382,5 @@ export const Web3Matrix = () => {
     </div>
   )
 }
+
+export default Web3Matrix

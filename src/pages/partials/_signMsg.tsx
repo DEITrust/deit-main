@@ -31,3 +31,5 @@ export const SignMsg = () => {
     </>
   )
 }
+
+export default SignMsg

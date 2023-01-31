@@ -81,3 +81,5 @@ export const TransferForm = props => {
     </div>
   )
 }
+
+export default TransferForm
