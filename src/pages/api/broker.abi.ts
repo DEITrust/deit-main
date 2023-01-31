@@ -18,12 +18,6 @@ export const abi = [
         name: 'amount_',
         type: 'uint256',
       },
-      {
-        indexed: true,
-        internalType: 'uint256',
-        name: 'amountTotal_',
-        type: 'uint256',
-      },
     ],
     name: 'Bought',
     type: 'event',
