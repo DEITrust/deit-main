@@ -84,6 +84,9 @@ export const DEITBroker = props => {
       })
       return
     }
+
+    const deitFloat = parseFloat(deitInput)
+
     if (isNaN(deitFloat)) {
       setBuyParams({
         ...buyParams,
@@ -128,7 +131,7 @@ export const DEITBroker = props => {
     const _options = { value: _value }
     setBuyParams({ ...buyParams, amount: _amount, options: _options })
     refetch()
-    if (props.ethBalance >= _value) {
+    if (props.ethBalance >= buyParams.amount) {
       setBuying(true)
     }
   }
