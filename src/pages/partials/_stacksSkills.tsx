@@ -19,6 +19,9 @@ export const StacksSkills = () => {
         <li>&mdash; Chainlink </li>
         <li>&mdash; Subgraphs </li>
         <li>&mdash; IPFS </li>
+        <li>&mdash; Alchemy </li>
+        <li>&mdash; Infura </li>
+        <li>&mdash; Slither </li>
       </ul>
       <hr className="my-6" />
       <dt>Web2/Systems</dt>
@@ -33,9 +36,10 @@ export const StacksSkills = () => {
         <li>&mdash; Unity3D</li>
         <li>&mdash; C#/Java</li>
         <li>&mdash; Postgres/MySQL/Redis</li>
-        <li>&mdash; Docker/Kubernates</li>
-        <li>&mdash; Terraform/AWS/Heroku</li>
+        <li>&mdash; Chai/Mocha</li>
         <li>&mdash; Tailwind</li>
+        <li>&mdash; Terraform/AWS/Heroku</li>
+        <li>&mdash; Docker/Kubernates</li>
       </ul>
       <hr className="my-6" />
       <h3 className=" mb-4 text-3xl font-bold underline">

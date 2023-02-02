@@ -68,6 +68,7 @@ export const DEITBroker = props => {
       DEIT: String(deitPrint),
     })
   }
+
   const handleDEITChange = event => {
     if (!price) return
     const deitInput = !event.target.value
@@ -83,11 +84,6 @@ export const DEITBroker = props => {
       })
       return
     }
-    console.log('INPUT')
-    console.log(deitInput)
-    const deitFloat = parseFloat(deitInput)
-    console.log('FLOAT')
-    console.log(deitFloat)
     if (isNaN(deitFloat)) {
       setBuyParams({
         ...buyParams,

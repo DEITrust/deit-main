@@ -110,8 +110,8 @@ export const Projects = () => {
             <dt>diamond-hardhat</dt>
             <p className="mr-2 mb-4">
               Forked from the mudgen Diamond-3 implementation to expand on the Hardhat integrations. Includes Mock
-              implementations of ERC20, ERC721 and EfunctionRC1155 leveraging DiamondStorage, tasks covering the
-              external functions for each Facet, and a WIP per-Facet test structure to simplify Diamond
+              implementations of ERC20, ERC721 and ERC1155 leveraging DiamondStorage, tasks covering the external
+              functions for each Facet, and a WIP per-Facet test structure to simplify Diamond
               building/testing/deployment.
             </p>
             <p>
@@ -124,7 +124,7 @@ export const Projects = () => {
               >
                 proggR/diamond-hardhat
               </a>
-              . diamond-hardhat-chainlink extension in development.
+              . To be audited & remade with shinyblocks soon.
             </p>
           </div>
         </div>
@@ -141,8 +141,8 @@ export const Projects = () => {
               <a className="font-bold underline" href="https://proggr.hashnode.dev/" target="_blank" rel="noreferrer">
                 introduction article
               </a>{' '}
-              is live, but articles covering EVM/Diamond Storage in more detail along with an example project are in
-              draft with plans to expand coverage alongside continued dev.
+              and an article covering the development of this version of the site are live, with more planned alongside
+              work refactoring/improving diamond-hardhat and more Web3 components for here.
             </p>
           </div>
         </div>
@@ -227,8 +227,24 @@ export const Projects = () => {
             </p>
             <p>
               <strong>DEIT Contacts</strong> is a simple, if not still too simple, contact/subscription/newsletter
-              campaign manager. It offers few bells & whistles (for now), aiming toservice a niche budget minded client
+              campaign manager. It offers few bells & whistles (for now), aiming to service a niche budget minded client
               who has simple needs: managing lists and sending emails.
+            </p>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div className="mb-6 mt-6 w-full">
+        <div className=" mb-8 mr-2">
+          <div className="m-auto max-w-sm">
+            <dt>More...</dt>
+            <p className="mb-4">So, so many more.</p>
+            <p>
+              Have your own Web3 project you need built?{' '}
+              <a className="font-bold underline" href="mailto:proggR@pm.me" target="_blank" rel="noreferrer">
+                I like to build
+              </a>
+              . Couldn't stop if I tried.
             </p>
           </div>
         </div>
