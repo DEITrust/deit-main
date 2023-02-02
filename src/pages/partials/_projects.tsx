@@ -244,7 +244,7 @@ export const Projects = () => {
               <a className="font-bold underline" href="mailto:proggR@pm.me" target="_blank" rel="noreferrer">
                 I like to build
               </a>
-              . Couldn't stop if I tried.
+              . Couldn&apos;t stop if I tried.
             </p>
           </div>
         </div>
