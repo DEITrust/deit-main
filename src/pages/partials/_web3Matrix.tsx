@@ -230,7 +230,12 @@ export const Web3Matrix = () => {
               <dt>DEIT Token</dt>
               <p className="mb-2">
                 A simple ERC20 token developed with ERC2535. Initially entirely useless and made for a blog post for{' '}
-                <a href="#" target="_blank" rel="noreferrer" className="underline">
+                <a
+                  href="https://proggr.hashnode.dev/project-walkthrough-a-simple-diamond-driven-brokered-erc20-example-with-dapp"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="underline"
+                >
                   Diamond Driven Development
                 </a>
                 , but may be extended as additional contracts/services are released.

@@ -123,15 +123,12 @@ export const DEITBroker = props => {
 
   const handleBuy = event => {
     event.preventDefault()
-    console.log('CALLING')
-    console.log(props.BROKER_ADDRESS)
-    console.log(props.BROKER)
     const _value = ethers.utils.parseEther(String(buyParams.ETH))
     const _amount = ethers.utils.parseEther(String(buyParams.DEIT))
     const _options = { value: _value }
     setBuyParams({ ...buyParams, amount: _amount, options: _options })
     refetch()
-    if (props.ethBalance >= buyParams.amount) {
+    if (props.ethBalance >= _value) {
       setBuying(true)
     }
   }
