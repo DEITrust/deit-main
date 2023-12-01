@@ -11,13 +11,16 @@ export const Projects = () => {
       <div className="mb-6  mt-6 flex w-full flex-col sm:flex-row">
         <div className="mr-2 mb-8 basis-1/2">
           <div className="m-auto max-w-sm">
-            <dt>DEIT Games (Coming Soon)</dt>
+            <dt>DEIT Games</dt>
             <p className="mb-4">
-              With multiple MVP prototypes in the back catalog, and one Early Access game nearing launch,{' '}
-              <strong>DEIT</strong> will be exploring more game dev as <strong>DEIT Games</strong>, delving more into
-              bridging DLT and games with future releases.
+              Miss the 90s? Miss beating up your friends (in video games) as you sat side by side? Miss a certain
+              volleyball flash game comprised of &quot;Slimes&quot;? Then you&apos;re in luck, because{' '}
+              <a href="/slime" className="font-bold underline">
+                Slime Brawly Brawl
+              </a>{' '}
+              is finally available. Simple, fast melee battle action at your fingertips.
+              <br /> Available only on Steam soon.
             </p>
-            <p>In the meantime, if you like Super Smash Bros and/or Slime Volleyball, stay tuned ;)</p>
           </div>
         </div>
         <hr className="mb-6 sm:mb-0 sm:hidden" />

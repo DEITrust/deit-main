@@ -6,7 +6,8 @@ export const Brand = () => {
         <br /> Investment Trust
       </h2>
       <blockquote>
-        Skunkworks Web3 R&D factory busy researching, investing in, and building the fourth industrial revolution.
+        Skunkworks Web3/Gamedev R&D factory busy researching, investing in, and building the fourth industrial
+        revolution.
       </blockquote>
     </div>
   )
