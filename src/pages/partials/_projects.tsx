@@ -1,4 +1,5 @@
 import styles from 'styles/Home.module.scss'
+import Link from 'next/link'
 
 export const Projects = () => {
   return (
@@ -15,9 +16,9 @@ export const Projects = () => {
             <p className="mb-4">
               Miss the 90s? Miss beating up your friends (in video games) as you sat side by side? Miss a certain
               volleyball flash game comprised of &quot;Slimes&quot;? Then you&apos;re in luck, because{' '}
-              <a href="/slime" className="font-bold underline">
+              <Link href="/slime" className="font-bold underline">
                 Slime Brawly Brawl
-              </a>{' '}
+              </Link>{' '}
               is finally available. Simple, fast melee battle action at your fingertips.
               <br /> Available only on Steam soon.
             </p>
