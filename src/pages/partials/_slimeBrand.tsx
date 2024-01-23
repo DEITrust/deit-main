@@ -14,12 +14,14 @@ export const SlimeBrand = () => {
         </blockquote>
         <p className="mt-8">
           {' '}
-          <Link
-            href="/contact"
+          <a
+            href="https://discord.gg/f3kDDdstt8"
+            target="_blank"
+            rel="noreferrer"
             className="rounded border border-slate-500 bg-transparent py-2 px-4 font-semibold text-slate-700 hover:border-transparent hover:bg-slate-500 hover:text-white"
           >
             Join Discord
-          </Link>
+          </a>
         </p>
       </div>
       <div className="my-8 max-w-lg rounded-xl bg-slate-200 p-6 text-center text-neutral-900">

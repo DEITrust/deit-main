@@ -6,6 +6,15 @@ import { useTheme } from 'next-themes'
 import { app } from 'appConfig'
 import { useState, useEffect } from 'react'
 import HeadGlobal from 'components/HeadGlobal'
+
+// import type { Metadata } from 'next'
+
+// export const metadata: Metadata = {
+//   title: 'Contact DEIT',
+//   description: 'Contact DEIT to discuss a project.',
+//   metadataBase: new URL('https://next-learn-dashboard.vercel.sh'),
+// }
+
 // Web3Wrapper deps:
 import { connectorsForWallets, RainbowKitProvider, lightTheme, darkTheme } from '@rainbow-me/rainbowkit'
 import {
