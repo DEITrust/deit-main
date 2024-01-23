@@ -1,20 +1,17 @@
 import Link from 'next/link'
 
-export const Brand = () => {
+export const CTA = () => {
   return (
     <div className="flex max-w-7xl flex-col sm:flex-row sm:space-x-6">
       <div className="my-8 max-w-lg rounded-xl bg-slate-200 p-6 text-center text-neutral-900">
-        <h2 className="mb-2 text-3xl font-bold">
-          Digital Estate
-          <br /> Investment Trust
-        </h2>
+        <h2 className="mb-2 text-3xl font-bold">Big Tech for small teams</h2>
         <blockquote>
-          Skunkworks Web3/Gamedev R&D factory busy researching, building, and investing in the fourth industrial
-          revolution.
+          That&apos;s the DEIT niche. Small/medium sized businesses and early projects who need insights and
+          integrations with nextgen technologies in an ever evolving world.
         </blockquote>
       </div>
       <div className="my-8 max-w-lg rounded-xl bg-slate-200 p-6 text-center text-neutral-900">
-        <p className="my-6 mb-8">
+        <p className="my-4 mb-6">
           Do you have development or Fractional CTO needs?
           <br />
           Or simply see a project that piques your interest?{' '}
@@ -33,4 +30,4 @@ export const Brand = () => {
   )
 }
 
-export default Brand
+export default CTA

@@ -1,5 +1,6 @@
 import styles from 'styles/Home.module.scss'
 import { ThemeToggleButton } from 'components/Theme'
+import Link from 'next/link'
 
 export const Footer = () => {
   return (
@@ -10,7 +11,9 @@ export const Footer = () => {
 
       <div className="mb-8 flex w-full flex-col items-center justify-end sm:mb-0 sm:max-w-xl sm:flex-row">
         <div>
-          <strong className="text-4xl sm:mr-8">DEIT.</strong>
+          <Link href="/" className="font-bold">
+            <img src="/deit.webp" alt="Digital Estate Investment Trust" className="h-8" />
+          </Link>
         </div>
         <div className="">
           <a href="https://www.linkedin.com/in/brandon-thorn-03662b36/" target="_blank" rel="noreferrer">
@@ -21,7 +24,7 @@ export const Footer = () => {
             />
           </a>
         </div>
-        <div className="w-full text-center ">
+        <div className="ml-4 mr-8 text-center ">
           A
           <a
             href="https://www.linkedin.com/in/brandon-thorn-03662b36/"
@@ -32,7 +35,7 @@ export const Footer = () => {
             Brandon Thorn
           </a>
           /<br className="sm:hidden" />
-          <a href="https://github.com/proggR" className="mx-2 font-bold underline" target="_blank" rel="noreferrer">
+          <a href="https://brandonthorn.com" className="mx-2 font-bold underline" target="_blank" rel="noreferrer">
             proggR
           </a>
           project.

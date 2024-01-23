@@ -90,7 +90,7 @@ export const Web3Matrix = () => {
   return (
     <div className={`${web3Classess} w-full bg-neutral-500/10 p-2 pt-6 text-center sm:p-6`}>
       <h3 className="mb-2 text-2xl font-bold sm:text-3xl">
-        <span className="underline">Enter Web3</span>{' '}
+        <span className="">Enter Web3</span>{' '}
         <span className="rounded-2xl bg-neutral-50 p-2 align-text-top text-sm font-thin text-neutral-900 no-underline">
           alpha
         </span>

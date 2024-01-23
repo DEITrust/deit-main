@@ -2,8 +2,7 @@ import styles from 'styles/Home.module.scss'
 import { Header } from './partials/_header'
 import { Footer } from './partials/_footer'
 
-import { SlimeBrand } from './partials/_slimeBrand'
-import { Slime } from './partials/_slime'
+import { Web3Matrix } from './partials/_web3Matrix'
 
 export default function Home() {
   return (
@@ -18,8 +17,7 @@ export default function Home() {
 const Main = () => {
   return (
     <main className={styles.main + ' space-y-6'}>
-      <Slime />
-      <SlimeBrand />
+      <Web3Matrix />
     </main>
   )
 }

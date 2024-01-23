@@ -2,8 +2,10 @@ import styles from 'styles/Home.module.scss'
 import { Header } from './partials/_header'
 import { Footer } from './partials/_footer'
 
-import { SlimeBrand } from './partials/_slimeBrand'
-import { Slime } from './partials/_slime'
+import { CTA } from './partials/_cta'
+import { StacksSkills } from './partials/_stacksSkills'
+import { Services } from './partials/_services'
+import { Foundation } from './partials/_foundation'
 
 export default function Home() {
   return (
@@ -18,8 +20,12 @@ export default function Home() {
 const Main = () => {
   return (
     <main className={styles.main + ' space-y-6'}>
-      <Slime />
-      <SlimeBrand />
+      <div className="flex max-w-7xl flex-col sm:flex-row sm:space-x-6">
+        <Services />
+        <StacksSkills />
+      </div>
+      <CTA />
+      <Foundation />
     </main>
   )
 }

@@ -1,21 +1,27 @@
 import styles from 'styles/Home.module.scss'
+import Link from 'next/link'
 
 export const Header = () => {
   return (
     <header className={styles.header}>
-      <div></div>
-      <div className="flex items-center text-5xl sm:text-6xl">
+      <div className="flex items-center text-3xl sm:text-4xl">
         <div className="relative">
-          <h1>
-            <strong>&mdash; DEIT. &mdash;</strong>
+          <h1 className="brandname">
+            <Link href="/" className="font-bold">
+              <img src="/deit.webp" alt="Digital Estate Investment Trust" className="h-12" />
+            </Link>
           </h1>
-          <span className="p-1/2 absolute right-0 top-0 rounded-2xl bg-cyan-400 px-1.5 text-xs font-thin text-neutral-900 sm:right-4">
-            Est. 2020
-          </span>
         </div>
       </div>
-
-      <div className="flex items-center"></div>
+      <div></div>
+      <div className="pr-8">
+        <Link
+          href="/contact"
+          className="text-white-700 rounded border border-slate-500 bg-transparent py-2 px-4 font-semibold text-white hover:border-transparent hover:bg-slate-500 hover:text-white"
+        >
+          Contact
+        </Link>
+      </div>
     </header>
   )
 }

@@ -2,8 +2,8 @@ import styles from 'styles/Home.module.scss'
 import { Header } from './partials/_header'
 import { Footer } from './partials/_footer'
 
-import { SlimeBrand } from './partials/_slimeBrand'
-import { Slime } from './partials/_slime'
+import { ProjectsList } from './partials/_projectsList'
+import { Foundation } from './partials/_foundation'
 
 export default function Home() {
   return (
@@ -18,8 +18,8 @@ export default function Home() {
 const Main = () => {
   return (
     <main className={styles.main + ' space-y-6'}>
-      <Slime />
-      <SlimeBrand />
+      <ProjectsList />
+      <Foundation />
     </main>
   )
 }
