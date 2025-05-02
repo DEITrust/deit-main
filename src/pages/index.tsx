@@ -4,9 +4,15 @@ import { Footer } from './partials/_footer'
 
 import { Brand } from './partials/_brand'
 import { HomeLinks } from './partials/_homeLinks'
+import { ProjectCTA } from './partials/_projectCTA'
+import { CTA } from './partials/_cta'
+import { CTALower } from './partials/_ctaLower'
+import { Services } from './partials/_services'
 
 import Head from 'next/head'
 import { app } from 'appConfig'
+
+import Link from 'next/link'
 
 // import type { Metadata } from 'next'
 
@@ -41,9 +47,15 @@ const Main = () => {
         <meta property="og:title" content={metadata.title} />
         <meta property="og:description" content={metadata.description} />
       </Head>
-
       <Brand />
-      <HomeLinks />
+      <div className="flex w-full max-w-5xl flex-col sm:flex-row sm:space-x-6">
+        <ProjectCTA />
+      </div>
+      <CTA />
+      <div>
+        <Services />
+      </div>
+      <CTALower />
     </main>
   )
 }

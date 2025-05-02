@@ -6,7 +6,7 @@ export const HomeLinks = () => {
     <div className={`w-full max-w-7xl rounded-xl bg-neutral-500/10 p-6 text-center ${styles.dl}`}>
       <h3 className="mb-2 text-3xl font-bold">Projects & Services</h3>
       <div className="flex w-full flex-col space-y-8 sm:flex-row sm:space-x-8">
-        <div className="mt-8 flex w-full items-center justify-center rounded-xl bg-slate-200 p-8 text-neutral-900 sm:basis-1/3">
+        <div className="mt-8 flex w-full items-center justify-center rounded-xl bg-slate-200 p-8 text-neutral-900 sm:basis-1/4">
           <div>
             <h4 className="mb-2 text-xl font-bold">Projects</h4>
             <p className="mb-8 text-sm">
@@ -23,7 +23,7 @@ export const HomeLinks = () => {
             </p>
           </div>
         </div>
-        <div className="flex w-full items-center justify-center rounded-xl bg-slate-200 p-8 text-neutral-900 sm:basis-1/3">
+        <div className="flex w-full items-center justify-center rounded-xl bg-slate-200 p-8 text-neutral-900 sm:basis-1/4">
           <div>
             <h4 className="mb-2 text-xl font-bold">Consulting</h4>
             <p className="mb-8 text-sm">
@@ -40,7 +40,7 @@ export const HomeLinks = () => {
             </p>
           </div>
         </div>
-        <div className="flex w-full items-center justify-center rounded-xl bg-slate-200 p-8 text-neutral-900 sm:basis-1/3">
+        <div className="flex w-full items-center justify-center rounded-xl bg-slate-200 p-8 text-neutral-900 sm:basis-1/4">
           <div>
             <h4 className="mb-2 text-xl font-bold">Web3</h4>
             <p className="mb-8 text-sm">
@@ -57,21 +57,16 @@ export const HomeLinks = () => {
             </p>
           </div>
         </div>
-        <div className="flex w-full items-center justify-center rounded-xl bg-slate-200 p-8 text-neutral-900 sm:basis-1/3">
+      </div>
+
+      <div className="flex w-full flex-col space-y-8 sm:flex-row sm:space-x-8">
+        <div className="flex w-full items-center justify-center rounded-xl bg-slate-200 p-8 text-neutral-900 sm:basis-1/4">
           <div>
             <h4 className="mb-2 text-xl font-bold">DEIT Games</h4>
             <p className="mb-8 text-sm">
-              DEIT has produced a growing catalog of game/virtual world prototypes intended for release. The first of
-              which is Slime Brawly Brawl, available now only on{' '}
-              <a
-                className="font-bold underline"
-                href="https://store.steampowered.com/app/2721250/Slime_Brawly_Brawl/"
-                rel="noreferrer"
-                target="_blank"
-              >
-                Steam
-              </a>
-              .
+              DEIT has produced a growing catalog of game/virtual world prototypes intended for release, while
+              networking with more gamedevs/teams still. The first <strong>DEIT</strong> game being{' '}
+              <strong>Slime Brawly Brawl</strong>; more to come.
             </p>
             <p>
               <Link

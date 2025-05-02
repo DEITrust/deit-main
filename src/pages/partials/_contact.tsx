@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export const Contact = () => {
   return (
-    <div className="flex max-w-7xl flex-col ">
+    <div className="mb-2 flex max-w-7xl flex-col">
       <div className=" max-w-lg rounded-xl bg-slate-200 p-6 text-center text-neutral-900">
         <div className="mb-8 flex w-full flex-col items-center justify-end sm:mb-0 sm:max-w-xl sm:flex-row">
           <div className="basis-1/6 text-left">

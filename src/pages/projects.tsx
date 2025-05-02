@@ -3,7 +3,9 @@ import { Header } from './partials/_header'
 import { Footer } from './partials/_footer'
 
 import { ProjectsList } from './partials/_projectsList'
-import { Foundation } from './partials/_foundation'
+import { CTA } from './partials/_cta'
+import { CTALower } from './partials/_ctaLower'
+import { StacksSkills } from './partials/_stacksSkills'
 
 import Head from 'next/head'
 // import type { Metadata } from 'next'
@@ -36,7 +38,9 @@ const Main = () => {
   return (
     <main className={styles.main + ' space-y-6'}>
       <ProjectsList />
-      <Foundation />
+      <CTA />
+      <StacksSkills />
+      <CTALower projects={true} />
     </main>
   )
 }

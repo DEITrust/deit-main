@@ -2,7 +2,7 @@ import styles from 'styles/Home.module.scss'
 
 export const Slime = () => {
   return (
-    <div className={`w-full rounded-xl bg-neutral-500/10 p-6 text-center `}>
+    <div className={`w-full p-6 text-center `}>
       <h3 className="mb-8 text-3xl font-bold">Slime Brawly Brawl</h3>
 
       <div className="flex w-full flex-col sm:flex-row sm:space-x-6">
